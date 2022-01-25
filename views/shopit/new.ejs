@@ -1,0 +1,52 @@
+<% layout("layouts/boilerplate.ejs") %> 
+
+<div class="row">
+    <div class="col-6">
+        <h1>New Product</h1>
+       <form action="/new" method="post" class="validate-form">
+           <div class="mb-3">
+               <label for="name" class="form-label">Name</label>
+               <input type="text" name="product[name]" id="name" class="form-control">
+           </div>
+           <div class="mb-3">
+               <label for="category" class="form-label">Category</label>
+               <select name="product[category]" id="category" class="form-select">
+                   <option value="Tablets">Tablets</option>
+                   <option value="Smartphones">Smartphones</option>
+                   <option value="Laptops">Laptops</option>
+                   <option value="Desktops">Desktops</option>
+               </select>
+           </div>
+           <div class="mb-3">
+               <label for="color" class="form-label">Color</label>
+               <input type="text" name="product[color]" id="color" class="form-control">
+           </div>
+           <div class="mb-3">
+               <label for="brand" class="form-label">Brand</label>
+               <input type="text" name="product[brand]" id="brand" class="form-control">
+           </div>
+           <div class="mb-3">
+               <label for="model" class="form-label">Model</label>
+               <input type="text" name="product[model]" id="model" class="form-control">
+           </div>
+           <div class="mb-3">
+               <label for="price" class="form-label">Price</label>
+               <input type="number" name="product[price]" id="price" class="form-control">
+           </div>
+           <div class="mb-3">
+               <label for="imageurl" class="form-label">Image URL</label>
+               <input type="url" name="product[imageurl]" id="imageurl" class="form-control">
+           </div>
+           <div class="mb-3">
+               <label for="rating" class="form-label">Rating</label>
+               <input type="text" name="product[rating]" id="rating" class="form-control">
+           </div>
+           <div class="mb-3">
+               <label for="description" class="form-label">Description</label>
+               <input type="text" name="product[description]" id="description" class="form-control">
+           </div>
+           <button class="btn btn-primary">Submit</button>
+       </form> 
+    </div>
+</div>
+

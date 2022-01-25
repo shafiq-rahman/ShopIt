@@ -1,0 +1,56 @@
+<% layout("layouts/boilerplate.ejs") %>
+
+<div class="screen">
+    <h1><%= name %></h1>
+    <div class="row">
+        <div class="col-lg-3 rounded">
+            <div class="rounded row">
+                <h2 class="bg-primary rounded text-light">Filter</h3>
+                    <div class="row">
+                        <h4>Brand</h4>
+                        <% for(let brand of brands) { %> 
+                            <div class="form-check ms-3">
+                                <input class="form-check-input brand" data-filter="<%= brand %>"  type="checkbox" value="" id="<%= brand %>">
+                                <label class="form-check-label" for="<%= brand %>"><%= brand %></label>
+                            </div>
+                        <% } %>    
+                        
+                        <!-- s -->
+                    </div>
+            </div>
+        </div>
+        <div class="col-lg-9">
+            <input type="text" placeholder="Search" class="form-control mb-3 search">
+            <div class="row">
+                <% for( let product of products ) { %>
+                    <div class="col-6 col-md-4 col-lg-3 mb-3 product <%= product.brand %>">
+                        <div class="pt-2 shadow" id="box">
+                            <a href="/<%= name %>/<%= product._id %>" class="link">
+                                <div class="detail">
+                                    <img src="<%= product.images[0].url %>" class="card-img-top p-1" alt="...">
+                                    <div class="card-body">
+                                        <div class="rating text-center">
+                                            <% for( let index=0; index < 5; index++ ) { %>
+                                                <% if (index < product.rating) { %>
+                                                    <span class="fa fa-star checked"></span>
+                                                <% } else { %>
+                                                    <span class="fa fa-star"></span>
+                                                <% } %>
+                                            <% } %>
+                                        </div>
+                                        <h6 class="card-title mb-1"><%= product.name %></h6>
+                                        <h5 class="text-primary"><span class="material-icons md-18">
+                                            currency_rupee
+                                            </span><%= product.price %></h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/javascripts/filter.js"></script>

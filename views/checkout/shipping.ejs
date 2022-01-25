@@ -1,0 +1,100 @@
+<% layout("layouts/boilerplate") %> 
+
+
+<div class="row">
+    <div class="col-sm-8">
+        <h1 class="fs-3">Shipping Details</h1>
+        <form action="" id="ship-form">
+            <div class="row">
+                <div class="mb-3 col-md-6">
+                    <label for="fname" class="form-label">First Name</label>
+                    <input type="text" name="fname" id="fname" class="form-control" required>
+                </div>
+                <div class="mb-3 col-md-6">
+                    <label for="lname" class="form-label">Last Name</label>
+                    <input type="text" name="lname" id="lname" class="form-control" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="mb-3 col-md-6">
+                    <label for="fname" class="form-label">Mobile</label>
+                    <input type="text" name="fname" id="fname" class="form-control" required>
+                </div>
+                <div class="mb-3 col-md-6">
+                    <label for="lname" class="form-label">Landmark</label>
+                    <input type="text" name="lname" id="lname" class="form-control" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="mb-3 col">
+                    <label for="fname" class="form-label">Door No, Flat, Street</label>
+                    <input type="text" name="fname" id="fname" class="form-control" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="mb-3 col">
+                    <label for="fname" class="form-label">Area, Locality</label>
+                    <input type="text" name="fname" id="fname" class="form-control" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="mb-3 col-md-6">
+                    <label for="fname" class="form-label">City</label>
+                    <input type="text" name="fname" id="fname" class="form-control" required>
+                </div>
+                <div class="mb-3 col-md-6">
+                    <label for="lname" class="form-label">Pincode</label>
+                    <input type="text" name="lname" id="lname" class="form-control" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="mb-3 col-md-6">
+                    <label for="fname" class="form-label">State</label>
+                    <input type="text" name="fname" id="fname" class="form-control" required>
+                </div>
+                <div class="mb-3 col-md-6">
+                    <label for="lname" class="form-label">Country</label>
+                    <input type="text" name="lname" id="lname" class="form-control" required>
+                </div>
+            </div>
+            
+        </form>
+    </div>
+    <div class="col-sm-4">
+        <h4 class="mb-3">Order Summary</h4>
+        <div class="card p-2 shadow">
+            <% for(let product of cartList) { %> 
+                <div class="cart">
+                    <div><%= product.name %></div>
+                    <div><span class="material-icons md-16">
+                        currency_rupee
+                        </span><%= product.price %><span class="text-secondary"> x <%= product.qty %></span></div>
+                </div>
+            <% } %>
+            <hr class="m-0 mt-2">    
+            <div class="cart">
+                <div>Total Quantity(s)</div>
+                <div class="fs-5"><%= totalItems %></div>
+            </div>
+            <div class="cart">
+                <div>Sub Total</div>
+                <div><span class="material-icons md-16">
+                    currency_rupee
+                    </span><span class="fs-5"><%= total %></span></div>
+            </div>
+            <div class="cart">
+                <div>Shipping Cost</div>
+                <div class="text-success fs-5">FREE</div>
+            </div>
+            <hr class="m-0 mt-2">    
+            <div class="cart mb-0">
+                <div class="text-primary fs-5">Grand Total</div>
+                <div class="text-primary"><span class="material-icons md-18">
+                    currency_rupee
+                    </span><span class="fs-4"><%= total %></span></div>
+            </div>
+            <span class="fs-6 text-secondary thick">Including Taxes</span>
+            <a href="/checkout/order" class="btn btn-primary shadow-sm mt-3">Order Now</a>
+        </div>
+    </div>
+</div>

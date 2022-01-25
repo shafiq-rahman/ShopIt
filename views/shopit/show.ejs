@@ -1,0 +1,100 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="row mb-3">
+    <div class="col-md-6 mb-3">
+        <div id="carouselExampleIndicators" class="carousel carousel-dark slide" data-bs-ride="carousel show-carousel" >
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+            </div>
+            <div class="carousel-inner show-carousel-inner">
+                <div class="carousel-item active">
+                    <img src="<%= product.images[0].url %>" class="d-block w-100 slide" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="<%= product.images[0].url %>" class="d-block w-100 slide" alt="...">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+    <!-- <div class="col-md-2"></div> -->
+    <div class="col-md-6 ">
+        <h2 class="fs-4"><%= product.name %> </h2>
+        <h3 class="text-primary fs-3"><span class="material-icons">
+            currency_rupee
+            </span><%= product.price %> </h3>
+        <h4 class="text-secondary fs-6">Inclusive of taxes</h4>
+        <div class="rating">
+            <% for( let index=0; index < 5; index++ ) { %>
+                <% if (index < product.rating) { %>
+                    <span class="fa fa-star checked"></span>
+                <% } else { %>
+                    <span class="fa fa-star"></span>
+                <% } %>
+            <% } %>
+        </div>
+        <p class="mb-1"><span class="material-icons">
+            verified_user
+        </span><span class="align-top"> <strong>24 Month(s)</strong> warranty by <strong>Manufacturer</strong></span><br>
+        <span class="text-secondary ">Manufacturer No <strong>SMG998BZSGMEA</strong></span></p>
+        <p><strong class="fs-5">Description</strong><br><%= product.description %></p>
+        
+        <div class="d-flex flex-column" >
+            <form action="/addCart/<%= product._id %>" class="d-flex" id="cart-form">
+            <select class="form-select me-2" name="productQty" id="productQty" style="width: fit-content;">
+                <option value="1" selected >1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            
+            <button class="btn btn-outline-primary w-100 addCart" type="submit" form="cart-form">Add to Cart</button>
+            <a href="/buynow/<%= product._id %>" class="w-100 flex-fill"><button class="btn btn-primary w-100 ms-2 buyNow" type="button">Buy now</button></a>
+        </form>
+        </div>
+    </div>
+</div>
+
+<% if(similarProducts.length) { %> 
+    <div class="row">
+        <h3>Simlar Products</h3>
+        <% for(let product of similarProducts) { %>
+            <div class="col-6 col-md-4 col-lg-3 mb-3 product <%= product.brand %>">
+                <div class="pt-2 shadow " id="box">
+                    <a href="/<%= product.category %>/<%= product._id %>" class="link">
+                        <div class="detail">
+                            <img src="<%= product.images[0].url %>" class="card-img-top p-1" alt="...">
+                            <div class="card-body">
+                                <div class="rating text-center">
+                                    <% for( let index=0; index < 5; index++ ) { %>
+                                        <% if (index < product.rating) { %>
+                                            <span class="fa fa-star checked"></span>
+                                        <% } else { %>
+                                            <span class="fa fa-star"></span>
+                                        <% } %>
+                                    <% } %>
+                                </div>
+                                <h6 class="card-title mb-1"><%= product.name %></h6>
+                                <h5 class="text-primary"><span class="fs-6">SR </span><%= product.price %></h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        <% } %>
+    </div>
+<% } %> 
+    

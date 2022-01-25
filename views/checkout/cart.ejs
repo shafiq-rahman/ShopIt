@@ -1,0 +1,91 @@
+<% layout("layouts/boilerplate") %> 
+
+
+<div class="row">
+    <% if(cartList) { %> 
+        <div class="col-lg-8">
+            <h4 class="mb-3">Your Shopping cart</h4>
+            <div class="card mb-3 shadow">
+                <% for(let product of cartList) { %> 
+                    <div class="row mb-3 ">
+                        <div class="col-3 pe-0 ">
+                            <img src="<%= product.images[0].url %> " class="card-img p-2" alt="...">
+                        </div>
+                        <div class="col-9 ps-0">
+                            <div class="card-body">
+                                <div class="row ">
+                                    <div class="col-md-9 d-flex flex-column">
+                                        <a href="/<%= product.category %>/<%= product._id %>" class="link"><h5 class="card-title mb-0"><%= product.name %></h5></a>
+                                        <span class="text-success thick">In Stock</span>
+                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                                            the card's
+                                            content.</p>
+                                        <a href="/checkout/cart/remove/<%= product._id %>" class="link thick text-danger">Remove</a>
+                                    </div>
+                                    <div class="col-md-3 d-flex flex-column">
+                                        <h4 class="text-primary ms-auto"><span class="material-icons md-18">
+                                            currency_rupee
+                                            </span><%= product.price %></h4>
+                                        <select class="form-select ms-auto " style="width: fit-content;" name="quantity" id="quantity">
+                                            <option value="<%= product.qty %>"selected ><%= product.qty %></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="my-0 shadow">
+                <% } %> 
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <h4 class="mb-3">Order Summary</h4>
+                <div class="card p-2 shadow">
+                    <% for(let product of cartList) { %> 
+                        <div class="cart">
+                            <div><%= product.name %></div>
+                            <div><span class="material-icons md-16">
+                                currency_rupee
+                                </span><%= product.price %><span class="text-secondary"> x <%= product.qty %></span></div>
+                        </div>
+                    <% } %>
+                    <hr class="m-0 mt-2">    
+                    <div class="cart">
+                        <div>Total Quantity(s)</div>
+                        <div class="fs-5"><%= totalItems %></div>
+                    </div>
+                    <div class="cart">
+                            <div>Sub Total</div>
+                            <div><span class="material-icons md-16">
+                                currency_rupee
+                                </span><span class="fs-5"><%= total %></span></div>
+                    </div>
+                    <div class="cart">
+                            <div>Shipping Cost</div>
+                            <div class="text-success fs-5">FREE</div>
+                    </div>
+                    <hr class="m-0 mt-2">    
+                    <div class="cart mb-0">
+                        <div class="text-primary fs-5">Grand Total</div>
+                        <div class="text-primary"><span class="material-icons md-18">
+                            currency_rupee
+                            </span><span class="fs-4"><%= total %></span></div>
+                    </div>
+                    <span class="fs-6 text-secondary thick">Including Taxes</span>
+                    <a href="/checkout/shipping" class="btn btn-primary shadow-sm mt-3">Checkout</a>
+                </div>                
+        </div>
+        <% } else { %> 
+            <div class="col d-flex justify-content-center align-items-center flex-column text-center">
+                <img src="https://media.istockphoto.com/vectors/shopping-cart-icon-vector-id1142859120?k=20&m=1142859120&s=170667a&w=0&h=mDJbGHOildt4Ip7TOmNt2IN9icVMyvd0_ByrqYhpAVA=" alt="" class="img-fluid" >
+                <h1 class="fs-2">Your Cart is empty</h2>
+                <h3 class="fs-3">You have no items in your shopping cart, <br>
+                    lets add some items you like.</h3>
+            </div>
+        <% } %> 
+        
+    
+    
+</div>
+    
+  
