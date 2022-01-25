@@ -14,8 +14,9 @@ const session = require("express-session")
 const flash = require("connect-flash")
 var MongoStore = require("connect-mongo")
 
-app.listen(4000, () => {
-    console.log("LISTENING TO PORT 4000")
+const port = process.env.PORT || 4000
+app.listen(port, () => {
+    console.log(`LISTENING TO PORT ${port}`)
 })
 //"mongodb+srv://shafiq:db_us_shaf20@cluster0.hp0n2.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/shopit" 
