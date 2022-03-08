@@ -1,9 +1,19 @@
 const mongoose = require("mongoose")
 const Product = require("../models/product")
 const { products } = require("./seedHelpers")
-mongoose.connect("mongodb://localhost:27017/shopit")
+if (process.env.NODE_ENV !== "production") {
+    require("dotenv").config()
+}
+
+const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/shopit" 
+
+mongoose.connect(dbUrl)
     .then(() => {
         console.log("MONGODB CONNECTION ON")
+        seedDb()
+            .then(() => {
+                mongoose.disconnect()
+            })        
     })
     .catch((err) => {
         console.log("FAILED TO CONNECT MONGODB")
@@ -35,8 +45,3 @@ const seedDb = async () => {
         await product.save()
     }
 }
-
-seedDb()
-    .then(() => {
-        mongoose.disconnect()
-    })
